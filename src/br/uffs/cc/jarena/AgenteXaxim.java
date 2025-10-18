@@ -79,9 +79,27 @@ public class AgenteXaxim extends Agente
             int xPerigo = Integer.parseInt(partes1[1]);
             int yPerigo = Integer.parseInt(partes1[2]);
             
-            // Se está perto da área de perigo, fOGE
+            // Se está perto da área de perigo, foge
             if(distanciaXY(xPerigo, yPerigo) < 150) {
-                setDirecao(geraDirecaoAleatoria());
+                int dx = getX() - xPerigo;
+            int dy = getY() - yPerigo;
+
+            if (Math.abs(dx) > Math.abs(dy)) {
+                // Foge na horizontal
+                if (dx > 0 && podeMoverPara(DIREITA)) {
+                    setDirecao(DIREITA);
+                } else if (dx < 0 && podeMoverPara(ESQUERDA)) {
+                    setDirecao(ESQUERDA);
+                }
+            } else {
+                // Foge na vertical
+                if (dy > 0 && podeMoverPara(BAIXO)) {
+                    setDirecao(BAIXO);
+                } else if (dy < 0 && podeMoverPara(CIMA)) {
+                    setDirecao(CIMA);
+                }
+            }
+            
             }
         }
 
